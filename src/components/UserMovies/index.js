@@ -12,10 +12,10 @@ const UserMovies = ({allMovies, deleteMovie}) => {
     }
   }
 
-  function makeButton(movieTitle) {
-    if (movieTitle) {
+  function makeButton(movieId) {
+    if (movieId) {
       return (
-        <Button onClick={() => deleteMovie(movieTitle)} buttonText={'Delete'} />
+        <Button onClick={() => deleteMovie(movieId)} buttonText={'Delete'} />
       );
     }
   }
@@ -30,7 +30,7 @@ const UserMovies = ({allMovies, deleteMovie}) => {
         </div>
         {result.movieTitle}
         <div>
-          {makeButton(result.movieTitle)}
+          {makeButton(result._id)}
         </div>
 
       </div>

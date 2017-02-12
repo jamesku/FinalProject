@@ -50,10 +50,10 @@ export function clearMovieSearch() {
   };
 }
 
-export function deleteMovieFromState(movieTitle) {
+export function deleteMovieFromState(movieId) {
   return {
     type: DELETE_MOVIE,
-    movieTitle
+    movieId
   };
 }
 
@@ -71,7 +71,7 @@ export function saveMovie(movieTitle, moviePosterPath, _id) {
     dispatch(addUserMovie(movie));
 
       // Return a Promise via Axios to wait for
-    return axios.post('http://localhost:4000/movies' , {movie});
+    return axios.post('http://localhost:4000/movies' , movie);
 
   };
 
@@ -99,8 +99,9 @@ export function getUserMovies() {
         const MovieArray = [];
         resp.data.forEach((obj) => {
           const movie = {
-            movieTitle: obj.movie.movieTitle,
-            moviePosterPath: obj.movie.moviePosterPath
+            movieTitle: obj.movieTitle,
+            moviePosterPath: obj.moviePosterPath,
+            _id: obj._id
           };
         //  dispatch(resp.dataddUserMovie(movie));
           MovieArray.push(movie);
@@ -138,12 +139,12 @@ export function searchForMovie(searchValue) {
   };
 }
 
-export function deleteMovie(movieTitle) {
+export function deleteMovie(movieId) {
   return function (dispatch) {
       // Dispatch the request for the Movie Meta Data
-    dispatch(deleteMovieFromState(movieTitle));
+    dispatch(deleteMovieFromState(movieId));
 
-    axios.delete('http://localhost:4000/movies?movie.movieTitle=' + movieTitle);
+    axios.delete('http://localhost:4000/movies/' + movieId);
     // return axios({
     //   method: 'delete',
     //   url: 'http://localhost:4000/movies?movie.movieTitle=' + movieTitle,

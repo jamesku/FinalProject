@@ -13,7 +13,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    deleteMovie: (movieTitle) => dispatch(deleteMovie(movieTitle))
+    deleteMovie: (movieId) => dispatch(deleteMovie(movieId))
   };
 };
 

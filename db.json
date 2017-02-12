@@ -1,56 +1,9 @@
 {
   "movies": [
     {
-      "movie": {
-        "movieTitle": "Jaws",
-        "moviePosterPath": "/l1yltvzILaZcx2jYvc5sEMkM7Eh.jpg"
-      },
-      "_id": 1
-    },
-    {
-      "movie": {
-        "movieTitle": "W.",
-        "moviePosterPath": "/upFQuRzN23kLvzO1brSFClLqZvV.jpg"
-      },
-      "_id": 2
-    },
-    {
-      "movie": {
-        "movieTitle": "Já nejsem já",
-        "moviePosterPath": "/vK8AcLQHPJStY21hi5yNXGcsPlG.jpg"
-      },
-      "_id": 3
-    },
-    {
-      "movie": {
-        "movieTitle": "Jaws",
-        "moviePosterPath": "/l1yltvzILaZcx2jYvc5sEMkM7Eh.jpg"
-      },
-      "_id": 4
-    },
-    {
-      "movie": {
-        "movieTitle": "Babylon A.D.",
-        "moviePosterPath": "/eeoB2u438Z8b14HJn8TVe8X9F1U.jpg",
-        "_id": 9381
-      },
-      "_id": 5
-    },
-    {
-      "movie": {
-        "movieTitle": "Tom",
-        "moviePosterPath": "/ragSXCKfYadXA86hqG6AOkqxbam.jpg",
-        "_id": 96129
-      },
-      "_id": 6
-    },
-    {
-      "movie": {
-        "movieTitle": "Babylon A.D.",
-        "moviePosterPath": "/eeoB2u438Z8b14HJn8TVe8X9F1U.jpg",
-        "_id": 9381
-      },
-      "_id": 7
+      "movieTitle": "Where’s Poppa?",
+      "moviePosterPath": "/3Ria0kkWlx1U1CAZc2IRmP7v09F.jpg",
+      "_id": 42569
     }
   ]
 }

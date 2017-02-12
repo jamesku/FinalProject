@@ -59,7 +59,7 @@ function addUserMovies(state = { UserMovies: []
     case DELETE_MOVIE: {
       let index;
       state.map((obj,i) => {
-        if (obj.movieTitle === action.movieTitle) {
+        if (obj._id === action.movieId) {
           index = i;
         }
       });

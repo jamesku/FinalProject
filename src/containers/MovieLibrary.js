@@ -1,16 +1,19 @@
 import { connect } from 'react-redux';
 import UserMovies from '../components/UserMovies';
-import {getUserMovies} from '../actions';
+import {deleteMovie} from '../actions';
+
 
 const mapStateToProps = (state) => {
+  let movieArray = [];
+  movieArray = state.addUserMovies;
   return {
-    allMovies: state.UserMovies
+    allMovies: movieArray
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    getUserMovies: dispatch(getUserMovies())
+    deleteMovie: (movieTitle) => dispatch(deleteMovie(movieTitle))
   };
 };
 

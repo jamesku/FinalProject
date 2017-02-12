@@ -7,6 +7,7 @@ const mapStateToProps = (state) => {
     movieTitle: state.searchMovie.movieTitle,
     movieOverview: state.searchMovie.movieOverview,
     moviePosterPath: state.searchMovie.moviePosterPath,
+    _id: state.searchMovie._id,
     searchValue: state.searchMovie.searchValue
   };
 };
@@ -20,8 +21,8 @@ const mapDispatchToProps = (dispatch) => {
         dispatch(clearMovieSearch());
       }
     },
-    saveMovie: (movieTitle, moviePosterPath) => {
-      dispatch(saveMovie(movieTitle, moviePosterPath));
+    saveMovie: (movieTitle, moviePosterPath, _id) => {
+      dispatch(saveMovie(movieTitle, moviePosterPath, _id));
     }
   };
 };

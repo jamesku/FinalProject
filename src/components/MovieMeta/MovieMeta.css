@@ -1,15 +1,27 @@
 
+.container{
+  display:inline-flex;
+  flex-direction: row;
+}
+
+.item{
+
+}
+
 img{
-  width:200px;
-  height:auto;
-  float:left;
+  width:auto;
+  max-height:300px;
   margin-left:20px;
   vertical-align: text-bottom;
 }
 #text{
   margin-top:10px;
-  margin-left:10%;
-  margin-right:10%;
+  margin-left:2%;
+  margin-right:2%;
+  max-height:300px;
+  max-width:50%;
+  text-align: left;
+  
 }
 
 #overview{
@@ -18,5 +30,4 @@ word-wrap: normal;
 
 #title{
 font-weight:bold;
-
 }

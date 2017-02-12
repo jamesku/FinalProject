@@ -1,8 +1,11 @@
-import {combineReducers} from 'redux'
-import {ADD_MOVIE, REQUEST_MOVIE_META, CLEAR_MOVIE_SEARCH, RECEIVE_MOVIE_META, REQUEST_USER_MOVIES, INVALIDATE_USER_MOVIES, RECEIVE_USER_MOVIES } from '../actions'
+import {combineReducers} from 'redux';
+import update from 'react-addons-update';
+import {DELETE_MOVIE, ADD_MOVIE, REQUEST_MOVIE_META,
+   CLEAR_MOVIE_SEARCH, RECEIVE_MOVIE_META,
+    RECEIVE_USER_MOVIES } from '../actions';
 
 // Change the state tree (movieSearch) based on the value input searching for the movie
-//
+
 function searchMovie(state = {
   isFetching: false,
   movieTitle: '',
@@ -24,6 +27,7 @@ function searchMovie(state = {
         movieTitle: action.movieObject[0].original_title,
         movieOverview: action.movieObject[0].overview,
         moviePosterPath: action.movieObject[0].poster_path,
+        _id: action.movieObject[0].id,
         lastUpdated: action.receivedAt
       });
     case CLEAR_MOVIE_SEARCH:
@@ -40,38 +44,28 @@ function searchMovie(state = {
 }
 
 
-// This is the lead function for calling the db of user movies, it incorporates the function above
-function getUserMovies(state = {}, action) {
-  switch (action.type) {
-
-    default:
-      return state;
-  }
-}
-
-//return ([...state, userMovie(undefined,obj)]);
-
-const userMovie = (state = {}, action) => {
-  switch (action.type) {
-    case ADD_MOVIE:
-      return {
-        movieTitle: action.movie.movieTitle,
-        moviePosterPath: action.movie.moviePosterPath
-      };
-    default:
-      return state;
-}
-}
-
-function UserMovies(state = {
+function addUserMovies(state = { UserMovies: []
 }, action) {
   switch (action.type) {
-    case ADD_MOVIE:
-      return [...state, {movie: [userMovie(undefined,action)]}];
-    case RECEIVE_USER_MOVIES:
-      return (
-         [...state, {movie: action.movieArray}]
-      );
+    case ADD_MOVIE: {
+      return ([...state, action.movie]);
+    }
+    case RECEIVE_USER_MOVIES: {
+      if (state.UserMovies) {
+        return (state.UserMovies.concat(action.movieArray));
+      }
+      return state;
+    }
+    case DELETE_MOVIE: {
+      let index;
+      state.map((obj,i) => {
+        if (obj.movieTitle === action.movieTitle) {
+          index = i;
+        }
+      });
+      const newState = update(state, {$splice: [[index, 1]]});
+      return newState;
+    }
     default:
       return state;
   }
@@ -80,7 +74,7 @@ function UserMovies(state = {
 // Combine reducers
 const rootReducer = combineReducers({
   searchMovie,
-  UserMovies
+  addUserMovies
 });
 
 export default rootReducer;

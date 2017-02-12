@@ -1,12 +1,10 @@
 import axios from 'axios';
-import { pushState } from 'redux-react-router';
-
 
 export const ADD_MOVIE = 'ADD_MOVIE';
+export const DELETE_MOVIE = 'DELETE_MOVIE';
 export const REQUEST_MOVIE_META = 'REQUEST_MOVIE_META';
 export const RECEIVE_MOVIE_META = 'RECEIVE_MOVIE_META';
 export const REQUEST_USER_MOVIES = 'REQUEST_USER_MOVIES';
-export const INVALIDATE_USER_MOVIES = 'INVALIDATE_USER_MOVIES';
 export const RECEIVE_USER_MOVIES = 'RECEIVE_USER_MOVIES';
 export const CLEAR_MOVIE_SEARCH = 'CLEAR_MOVIE_SEARCH';
 
@@ -38,16 +36,10 @@ function requestUserMovies() {
   };
 }
 
-function invalidateUserMovies() {
-  return {
-    type: INVALIDATE_USER_MOVIES,
-  };
-}
-
 function receiveUserMovies(movieArray) {
   return {
     type: RECEIVE_USER_MOVIES,
-    movieArray: movieArray,
+    movieArray,
     receivedAt: Date.now()
   };
 }
@@ -58,14 +50,21 @@ export function clearMovieSearch() {
   };
 }
 
+export function deleteMovieFromState(movieTitle) {
+  return {
+    type: DELETE_MOVIE,
+    movieTitle
+  };
+}
 
 
-export function saveMovie(movieTitle, moviePosterPath) {
+export function saveMovie(movieTitle, moviePosterPath, _id) {
   return function (dispatch) {
 
     const movie = {
-      movieTitle: movieTitle,
-      moviePosterPath: moviePosterPath
+      movieTitle,
+      moviePosterPath,
+      _id
     };
 
       // Initial dispatch to add the movie to the local store
@@ -97,20 +96,18 @@ export function getUserMovies() {
       // When the response is received, dispatch the data (via action creator)
 
       .then(resp => {
-        //const MovieArray = [];
+        const MovieArray = [];
         resp.data.forEach((obj) => {
           const movie = {
             movieTitle: obj.movie.movieTitle,
             moviePosterPath: obj.movie.moviePosterPath
           };
-          dispatch(addUserMovie(movie));
-        //  MovieArray.push(movie);
+        //  dispatch(resp.dataddUserMovie(movie));
+          MovieArray.push(movie);
         });
 
-        // I HAVE A BIG QUESTION HERE! (ABOUT MANIPULATING THINGS IN STATE IN REDUX)
-
-        // console.log(MovieArray);
-        // dispatch(receiveUserMovies(MovieArray));
+        // I HAVE A BIG QUESTIO HERE! (ABOUT MANIPULATING THINGS IN STATE IN REDUX)
+        dispatch(receiveUserMovies(MovieArray));
       });
 			// .catch(function(response){
 			// 	dispatch(receiveError(response.data));
@@ -141,6 +138,23 @@ export function searchForMovie(searchValue) {
   };
 }
 
-export function deleteMovie() {
-  return;
+export function deleteMovie(movieTitle) {
+  return function (dispatch) {
+      // Dispatch the request for the Movie Meta Data
+    dispatch(deleteMovieFromState(movieTitle));
+
+    axios.delete('http://localhost:4000/movies?movie.movieTitle=' + movieTitle);
+    // return axios({
+    //   method: 'delete',
+    //   url: 'http://localhost:4000/movies?movie.movieTitle=' + movieTitle,
+    // })
+    //     // When the response is received, dispatch the data (via action creator)
+    //     .then(resp => {
+    //       console.log('movie deleted');
+    //     });
+    //     // .catch(function(response){
+        // 	dispatch(receiveError(response.data));
+        // 	dispatch(pushState(null,'/error'));
+        // })
+  };
 }

@@ -1,7 +1,24 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './App.css';
+import MovieSearch from './containers/MovieSearch.js';
+import MovieLibrary from './containers/MovieLibrary.js';
 
-class App extends Component {
+const App = () => (
+  <div>
+    <MovieSearch />
+    <MovieLibrary />
+  </div>
+);
+
+export default App;
+
+
+/*
+export default class App extends Component {
+  constructor(props) {
+    super(props);
+  }
+
   render() {
     return (
       <div className="App">
@@ -11,4 +28,6 @@ class App extends Component {
   }
 }
 
-export default App;
+
+import React from 'react';
+*/

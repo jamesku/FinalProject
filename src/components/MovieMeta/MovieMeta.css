@@ -1,0 +1,22 @@
+
+img{
+  width:200px;
+  height:auto;
+  float:left;
+  margin-left:20px;
+  vertical-align: text-bottom;
+}
+#text{
+  margin-top:10px;
+  margin-left:10%;
+  margin-right:10%;
+}
+
+#overview{
+word-wrap: normal;
+}
+
+#title{
+font-weight:bold;
+
+}

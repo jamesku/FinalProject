@@ -10,15 +10,14 @@ const Header = ({searchValue, onChange, handleSubmit}) => {
       <SearchBar onChange={onChange} searchValue={searchValue} handleSubmit={handleSubmit} />
 
       <FileUpload
-        allowedFileTypes={['jpg', 'jpeg']}
+        allowedFileTypes={['jpg']}
         data={{
           type: 'picture',
           user: 'james',
           hashtag: searchValue
         }}
-        dropzoneId="fileUpload"
-        url="http:/localhoust/newpost"
-      >
+        dropzoneId="fileUpad"
+        url="http:/localhost:8080/newpost">
         <button>
           +
         </button>

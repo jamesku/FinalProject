@@ -4,6 +4,16 @@
       "movieTitle": "Where’s Poppa?",
       "moviePosterPath": "/3Ria0kkWlx1U1CAZc2IRmP7v09F.jpg",
       "_id": 42569
+    },
+    {
+      "movieTitle": "Jaws",
+      "moviePosterPath": "/l1yltvzILaZcx2jYvc5sEMkM7Eh.jpg",
+      "_id": 578
+    },
+    {
+      "movieTitle": "Babylon A.D.",
+      "moviePosterPath": "/eeoB2u438Z8b14HJn8TVe8X9F1U.jpg",
+      "_id": 9381
     }
   ]
 }

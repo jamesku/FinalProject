@@ -1,8 +1,8 @@
 import {combineReducers} from 'redux';
 import update from 'react-addons-update';
-import {DELETE_MOVIE, ADD_MOVIE, REQUEST_MOVIE_META,
+import {DELETE_MOVIE, ADD_MOVIE, REQUEST_HT,
    CLEAR_MOVIE_SEARCH, RECEIVE_MOVIE_META,
-    RECEIVE_USER_MOVIES } from '../actions';
+    RECEIVE_USER_MOVIES, UPDATE_HT_VALUE } from '../actions';
 
 // Change the state tree (movieSearch) based on the value input searching for the movie
 
@@ -14,8 +14,13 @@ function searchMovie(state = {
   searchValue: ''
 }, action) {
   switch (action.type) {
+    case UPDATE_HT_VALUE:
+      return Object.assign({}, state, {
+        searchValue: action.value
+      });
+
     // If the reducer is passed that the request is made is notes it in the state object
-    case REQUEST_MOVIE_META:
+    case REQUEST_HT:
       return Object.assign({}, state, {
         isFetching: true,
         searchValue: action.movie

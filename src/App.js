@@ -1,12 +1,21 @@
 import React from 'react';
 import './App.css';
 import MovieSearch from './containers/MovieSearch.js';
-import MovieLibrary from './containers/MovieLibrary.js';
+import Wall from './containers/wall';
+import Header from './containers/header';
+import { Router, Route, Link, browserHistory } from 'react-router';
+
 
 const App = () => (
-  <div>
-    <MovieSearch />
-    <MovieLibrary />
+<div>
+  <Header />
+  <Router history={browserHistory} >
+      <Route path="/about" component={Wall} />
+      <Route path="/users" component={MovieSearch}>
+        <Route path="/user/:userId" component={Wall} />
+      </Route>
+      <Route path="*" component={Wall} />
+  </Router>
   </div>
 );
 
